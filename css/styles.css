@@ -171,28 +171,36 @@ nav.main-nav {
 /* ---------- Hero ---------- */
 .hero { position: relative; min-height: 760px; margin-top: calc(var(--header-h) * -1); overflow: hidden; border-bottom: 1px solid var(--line); }
 .hero::before {
-  content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none;
   background:
-    radial-gradient(circle at 70% 40%, rgba(92, 97, 52, .2), transparent 32%),
-    linear-gradient(90deg, var(--black) 4%, rgba(21, 21, 21, .89) 37%, rgba(21, 21, 21, .2) 68%, rgba(21, 21, 21, .4));
+    radial-gradient(circle at 75% 45%, rgba(92, 97, 52, .18), transparent 45%),
+    linear-gradient(90deg,
+      var(--black) 0%,
+      rgba(21, 21, 21, .96) 28%,
+      rgba(21, 21, 21, .84) 48%,
+      rgba(21, 21, 21, .35) 72%,
+      rgba(21, 21, 21, .15) 100%
+    );
 }
-.hero-photo { position: absolute; inset: 0 0 0 36%; overflow: hidden; }
+.hero-photo { position: absolute; inset: 0; overflow: hidden; z-index: 1; }
 .hero-photo::after {
   content: ''; position: absolute; inset: 0;
-  background: linear-gradient(90deg, var(--black) 0%, transparent 32%), linear-gradient(0deg, rgba(21, 21, 21, .55), transparent 40%, rgba(21, 21, 21, .35));
+  background:
+    linear-gradient(0deg, rgba(21, 21, 21, .75) 0%, transparent 25%, transparent 75%, rgba(21, 21, 21, .6) 100%),
+    linear-gradient(90deg, var(--black) 0%, rgba(21, 21, 21, .9) 25%, transparent 60%);
 }
 .hero-photo img {
-  width: 100%; height: 100%; object-fit: cover; object-position: 70% center;
-  filter: saturate(.92) contrast(1.08) brightness(.86);
+  width: 100%; height: 100%; object-fit: cover; object-position: 85% center;
+  filter: saturate(.92) contrast(1.08) brightness(.88);
   transform: scale(1.08); animation: heroZoom 2.4s var(--ease) forwards;
 }
 @keyframes heroZoom { to { transform: scale(1); } }
 
 .topo {
-  position: absolute; z-index: 2; right: 40%; top: 14%; width: 360px; height: 260px;
-  opacity: .13; border: 1px solid var(--olive-hot); border-radius: 50%;
-  transform: rotate(-12deg);
-  box-shadow: 0 0 0 22px transparent, 0 0 0 23px rgba(138,133,81,.7), 0 0 0 49px transparent, 0 0 0 50px rgba(138,133,81,.5), 0 0 0 79px transparent, 0 0 0 80px rgba(138,133,81,.35);
+  position: absolute; z-index: 2; right: 38%; top: 18%; width: 340px; height: 240px;
+  opacity: .07; border: 1px solid var(--olive-hot); border-radius: 50%;
+  transform: rotate(-12deg); pointer-events: none;
+  box-shadow: 0 0 0 22px transparent, 0 0 0 23px rgba(138,133,81,.4), 0 0 0 49px transparent, 0 0 0 50px rgba(138,133,81,.25), 0 0 0 79px transparent, 0 0 0 80px rgba(138,133,81,.15);
   animation: drift 18s ease-in-out infinite alternate;
 }
 @keyframes drift { to { transform: rotate(-4deg) translate(-14px, 10px); } }

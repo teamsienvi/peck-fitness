@@ -43,9 +43,8 @@ npx -y serve .
 
 Any static host works. Point it at the repo root, no build command, output dir `.`
 
-- **Netlify**: drag the folder into app.netlify.com/drop, or connect the repo.
-- **Vercel**: `npx vercel` → framework "Other", no build command.
-- **Cloudflare Pages / GitHub Pages**: publish from the root.
+- **Vercel** (Live): [peck-fitness.vercel.app](https://peck-fitness.vercel.app/)
+- **Netlify / Cloudflare Pages**: drag into dashboard or connect repository (no build step, output dir `.`).
 
 ## Before going live
 
