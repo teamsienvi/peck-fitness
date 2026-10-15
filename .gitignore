@@ -1,0 +1,15 @@
+# Brand source files (kept local; the site uses extracted SVGs in assets/logo)
+*.pdf
+/9b181a53-b8bd-45f5-936b-9c50f6dfa2df.png
+/17b7e49b-6bb4-4cdc-b10c-5fb829419c8c.png
+/peck-fitness-Mockup-1st_draft.html
+/assets/brand/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+node_modules/
+.vercel
+.netlify
