@@ -29,7 +29,7 @@ assets/brand/       Brand guide + product spec sheet (reference only)
 
 Logo files: `peck-logo.svg` (light backgrounds), `peck-logo-reversed.svg` (dark backgrounds), `peck-mark.svg` / `peck-mark-olive-accent.svg` (icon only).
 
-Copy follows the guide's **approved claims** (700 lb capacity, 10°–50° incline, heavy-duty steel, independent dual-board, non-slip grip, fold-flat) and **compliance** rules (no medical treatment, injury-cure, or guaranteed-result claims).
+Copy follows the **PECK Fitness Product and Customer Support Guidance** (draft, 8 Oct 2026) claims table: aluminum construction, two-board set, 10°–50° incline, textured grip surface (not "non-slip"), fold-flat. The 700 lb capacity, dimensions, weight and durability/testing claims are **on hold until verified**. Compliance rules: no medical treatment, injury-cure, or guaranteed-result claims. The scripted chat assistant in `js/main.js` is trained on the same document.
 
 ## Run locally
 
@@ -48,7 +48,9 @@ Any static host works. Point it at the repo root, no build command, output dir `
 
 ## Before going live
 
-- [ ] Replace `CONTACT_EMAIL` in `js/main.js` (currently `hello@peckfitness.example`).
+- [ ] Replace `CONTACT_EMAIL` in `js/main.js` (currently `hello@peckfitness.example`) once Rick confirms the support address — it is used by the signup form and the chat assistant.
+- [ ] Add confirmed load limit (per board vs. per set), dimensions and weight to the specs table and chat assistant.
+- [ ] Add approved shipping, returns, warranty, replacement-part and app-access policies to the chat assistant.
 - [ ] Optionally set `SIGNUP_ENDPOINT` in `js/main.js` (Formspree, Netlify Forms, Supabase function…) so signups POST `{ email, source }` instead of opening a mailto.
 - [ ] Swap the AI-generated product images in `assets/` for real product photography.
 - [ ] Update `<link rel="canonical">` and `og:image` in `index.html` to absolute URLs on the final domain.
