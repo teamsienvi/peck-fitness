@@ -1,0 +1,19 @@
+{
+  "name": "peck-fitness",
+  "version": "1.0.0",
+  "private": true,
+  "description": "PECK Fitness - Dual Slant Board landing page and AI assistant",
+  "main": "dev-server.js",
+  "scripts": {
+    "dev": "node dev-server.js",
+    "start": "node dev-server.js",
+    "serve": "npx -y serve ."
+  },
+  "keywords": [
+    "slant-board",
+    "fitness",
+    "landing-page"
+  ],
+  "author": "PECK Fitness",
+  "license": "UNLICENSED"
+}

@@ -6,20 +6,20 @@
   <title>PECK Fitness — Adjustable Dual Slant Board | Move With Purpose</title>
   <meta name="description" content="PECK Fitness adjustable dual slant board. Two adjustable aluminum boards, 10°–50° incline, textured grip surface, fold-flat storage. Built for mobility, strength, and performance." />
   <meta name="theme-color" content="#151515" />
-  <link rel="canonical" href="https://peck-fitness.vercel.app/" />
+  <link rel="canonical" href="https://peckfitness.ai/" />
 
   <!-- Open Graph / social -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://peck-fitness.vercel.app/" />
+  <meta property="og:url" content="https://peckfitness.ai/" />
   <meta property="og:site_name" content="PECK Fitness" />
   <meta property="og:title" content="PECK Fitness — Move With Purpose" />
   <meta property="og:description" content="Adjustable dual slant board built for mobility, strength, and performance training." />
-  <meta property="og:image" content="https://peck-fitness.vercel.app/assets/peck-training-hero.jpg" />
+  <meta property="og:image" content="https://peckfitness.ai/assets/peck-training-hero.jpg" />
   <meta property="og:image:width" content="1376" />
   <meta property="og:image:height" content="768" />
   <meta property="og:image:alt" content="Two PECK Fitness adjustable slant boards on a gym floor" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://peck-fitness.vercel.app/assets/peck-training-hero.jpg" />
+  <meta name="twitter:image" content="https://peckfitness.ai/assets/peck-training-hero.jpg" />
 
   <link rel="icon" href="favicon.ico?v=2" sizes="any" />
   <link rel="icon" href="assets/favicon.svg?v=2" type="image/svg+xml" />
@@ -40,8 +40,8 @@
     "name": "PECK Fitness Adjustable Dual Slant Board",
     "brand": { "@type": "Brand", "name": "PECK Fitness" },
     "description": "The PECK Fitness Dual Slant Board Set includes two adjustable aluminum boards for general fitness stretching, mobility work and selected strength exercises, with 10° to 50° incline settings and a textured grip surface.",
-    "image": "https://peck-fitness.vercel.app/assets/peck-product-specs.jpg",
-    "url": "https://peck-fitness.vercel.app/"
+    "image": "https://peckfitness.ai/assets/peck-product-specs.jpg",
+    "url": "https://peckfitness.ai/"
   }
   </script>
 </head>
@@ -58,7 +58,7 @@
         <a href="#why">Why PECK</a>
         <a href="#specs">Specs</a>
         <a href="#app">Training app</a>
-        <a href="#assistant">AI assistant</a>
+        <a href="/assistant">AI assistant</a>
       </div>
       <div class="nav-right">
         <a class="nav-cta" href="#early-access">Get product info</a>
@@ -73,7 +73,7 @@
     <a href="#why">Why PECK</a>
     <a href="#specs">Specs</a>
     <a href="#app">Training app</a>
-    <a href="#assistant">AI assistant</a>
+    <a href="/assistant">AI assistant</a>
     <a class="button button-olive" href="#early-access">Get product info <span class="arrow">↘</span></a>
   </div>
 
@@ -281,38 +281,48 @@
       </div>
     </section>
 
-    <!-- ASSISTANT -->
+    <!-- ASSISTANT SHOWCASE -->
     <section class="assistant-section" id="assistant">
       <div class="wrap assistant-layout">
         <div class="assistant-copy reveal">
-          <div class="eyebrow">PECK support assistant</div>
-          <h2>Answers<br />when they need them.</h2>
-          <p>A website chat that helps customers choose a session, understand the board, find product answers, and move to human support when a question needs more context.</p>
+          <div class="eyebrow">PECK support concierge</div>
+          <h2>Answers<br />when you need them.</h2>
+          <p>Get instant guidance on board setup, incline calibration, foot positioning for calf stretches vs. squats, starter flows, and verified product care.</p>
           <div class="assistant-rules">
-            <div class="assistant-rule">Grounded in approved PECK content</div>
-            <div class="assistant-rule">Product and setup guidance</div>
-            <div class="assistant-rule">Exercise and session discovery</div>
-            <div class="assistant-rule">No diagnosis or medical promises</div>
+            <div class="assistant-rule">Grounded in official PECK fitness guidance</div>
+            <div class="assistant-rule">Incline angles & setup instructions</div>
+            <div class="assistant-rule">Exercise & flow discovery</div>
+            <div class="assistant-rule">Safe training boundaries & support</div>
+          </div>
+          <div style="margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap;">
+            <a href="/assistant" class="button button-olive">Open Dedicated Assistant Page <span class="arrow">↗</span></a>
+            <button type="button" class="button button-ghost" id="launch-floating-chat">Quick Chat Here ↘</button>
           </div>
         </div>
-        <div class="chat-card reveal" aria-label="PECK website assistant preview">
-          <div class="chat-head">
-            <div class="chat-avatar" aria-hidden="true"><img src="assets/logo/peck-mark-olive-accent.svg" alt="" width="22" height="18" /></div>
-            <div><strong>PECK Assistant</strong><span>Product + training support</span></div>
+
+        <div class="assistant-preview-card reveal" aria-label="PECK AI Concierge Feature Preview">
+          <div class="preview-card-head">
+            <div class="preview-badge">Interactive Concierge</div>
+            <div class="preview-status"><span class="status-indicator"></span> Available 24/7</div>
           </div>
-          <div class="chat-body" id="chat-body" aria-live="polite">
-            <div class="chat-message bot">Hey. I can help you choose a session, understand your slant board, or find a product detail.</div>
-            <div class="chat-suggestions" id="chat-suggestions">
-              <button class="chat-suggestion" data-question="Which session should I start with?">Choose a session</button>
-              <button class="chat-suggestion" data-question="How do I adjust the board?">Adjust the board</button>
-              <button class="chat-suggestion" data-question="What are the key specs?">Product specs</button>
-              <button class="chat-suggestion" data-question="How do I store it?">Storage</button>
+          <div class="preview-card-body">
+            <div class="preview-bubble bot">
+              <p>Hey! I'm the official PECK AI Concierge. How can I help you optimize your slant board training?</p>
+            </div>
+            <div class="preview-topics">
+              <span class="preview-topic-label">Popular Guidance & Routines:</span>
+              <div class="preview-chips">
+                <a href="/assistant" class="preview-chip">Which routine should I start with? <span class="chip-arrow">↗</span></a>
+                <a href="/assistant" class="preview-chip">How do I adjust 10°–50° incline? <span class="chip-arrow">↗</span></a>
+                <a href="/assistant" class="preview-chip">Foot orientation: calf vs squat <span class="chip-arrow">↗</span></a>
+                <a href="/assistant" class="preview-chip">What is the Calf + Ankle Flow? <span class="chip-arrow">↗</span></a>
+              </div>
             </div>
           </div>
-          <form class="chat-form" id="chat-form" autocomplete="off">
-            <input id="chat-input" aria-label="Ask the PECK assistant" placeholder="Ask about the board or a session..." />
-            <button type="submit" id="chat-send">SEND</button>
-          </form>
+          <div class="preview-card-foot">
+            <a href="/assistant" class="preview-launch-btn">Launch Full Assistant Console <span class="arrow">↗</span></a>
+            <span class="preview-note">Or click <strong>Ask PECK AI</strong> at bottom right for quick answers</span>
+          </div>
         </div>
       </div>
     </section>
@@ -344,6 +354,46 @@
       <span>Premium · Professional · Bold · Purpose-built</span>
     </div>
   </footer>
+
+  <!-- Floating Assistant Widget Launcher -->
+  <aside class="chat-floating-wrap" id="chat-floating-wrap" aria-label="Quick AI Assistant">
+    <button class="chat-floating-trigger" id="chat-widget-trigger" aria-label="Open PECK Assistant" aria-expanded="false">
+      <img src="assets/logo/peck-mark-olive-accent.svg" alt="" width="18" height="18" />
+      <span>Ask PECK AI</span>
+      <span class="status-indicator" title="Online"></span>
+    </button>
+
+    <div class="chat-floating-drawer" id="chat-floating-drawer" hidden>
+      <div class="chat-floating-head">
+        <div class="chat-floating-brand">
+          <img src="assets/logo/peck-mark-olive-accent.svg" alt="" width="18" height="18" />
+          <div>
+            <strong>PECK Assistant</strong>
+            <span>Online · AI Concierge</span>
+          </div>
+        </div>
+        <div class="chat-floating-actions">
+          <a href="/assistant" class="chat-floating-expand" title="Open full dedicated page" aria-label="Expand to full page">↗</a>
+          <button class="chat-floating-close" id="chat-widget-close" aria-label="Close assistant" title="Minimize">✕</button>
+        </div>
+      </div>
+      <div class="chat-floating-body" id="chat-floating-body">
+        <div class="chat-message bot">
+          <p>Hey! I can help you choose a workout routine, set your incline angles, or answer board questions.</p>
+        </div>
+        <div class="chat-floating-chips" id="chat-floating-chips">
+          <button class="chat-suggestion" data-floating-q="Which session should I start with?">Start a session</button>
+          <button class="chat-suggestion" data-floating-q="How do I adjust the board?">Adjust incline</button>
+          <button class="chat-suggestion" data-floating-q="What is the Calf + Ankle Flow?">Calf + Ankle</button>
+          <button class="chat-suggestion" data-floating-q="Foot orientation for calf vs squat?">Foot position</button>
+        </div>
+      </div>
+      <form class="chat-form chat-floating-form" id="chat-floating-form" autocomplete="off">
+        <input type="text" id="chat-floating-input" placeholder="Ask PECK Assistant..." aria-label="Ask the PECK assistant" />
+        <button type="submit">SEND</button>
+      </form>
+    </div>
+  </aside>
 
   <script src="js/main.js" defer></script>
 </body>

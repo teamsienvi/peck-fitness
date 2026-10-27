@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PECK AI Assistant — Support, Setup & Training Routines</title>
+  <meta name="description" content="Official AI Assistant for the PECK Dual Slant Board set. Get immediate guidance on board setup, starter routines, safety guidelines, and product care." />
+  <meta name="theme-color" content="#151515" />
+  <link rel="canonical" href="https://peckfitness.ai/assistant" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://peckfitness.ai/assistant" />
+  <meta property="og:site_name" content="PECK Fitness" />
+  <meta property="og:title" content="PECK AI Assistant — Product & Training Support" />
+  <meta property="og:description" content="Interactive AI assistant for the PECK Dual Slant Board. Learn setup, foot placement, and guided flows." />
+  <meta property="og:image" content="https://peckfitness.ai/assets/peck-training-hero.jpg" />
+
+  <link rel="icon" href="favicon.ico?v=2" sizes="any" />
+  <link rel="icon" href="assets/favicon.svg?v=2" type="image/svg+xml" />
+  <link rel="icon" href="assets/icons/favicon-32.png?v=2" type="image/png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png?v=2" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="page-assistant">
+  <header class="site-header" id="site-header">
+    <nav class="wrap main-nav" aria-label="Primary">
+      <a class="brand" href="/" aria-label="PECK Fitness home">
+        <img src="assets/logo/peck-logo-reversed.svg" alt="PECK Fitness" width="552" height="56" />
+      </a>
+      <div class="nav-links">
+        <a href="/#why">Why PECK</a>
+        <a href="/#specs">Specs</a>
+        <a href="/#app">Training app</a>
+        <a href="/assistant" class="active">AI assistant</a>
+      </div>
+      <div class="nav-right">
+        <a class="nav-cta" href="/#early-access">Get product info</a>
+        <a class="button button-ghost" href="/" style="padding: 8px 14px; font-size: .74rem;">← Back to Home</a>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <a href="/#why">Why PECK</a>
+    <a href="/#specs">Specs</a>
+    <a href="/#app">Training app</a>
+    <a href="/assistant" class="active">AI assistant</a>
+    <a href="/">← Back to Home</a>
+    <a class="button button-olive" href="/#early-access">Get product info <span class="arrow">↘</span></a>
+  </div>
+
+  <main class="assistant-page-main">
+    <div class="wrap">
+      <div class="assistant-page-header">
+        <div class="eyebrow">Interactive Training & Product Concierge</div>
+        <h1>PECK <span>AI Assistant</span></h1>
+        <p>Ask anything about board angles, foot positioning for calf stretches vs. squats, starter flows, or product maintenance. Trained on the official PECK support guidance.</p>
+      </div>
+
+      <div class="assistant-page-container">
+        <!-- Main Chat Console -->
+        <div class="chat-card standalone-chat" aria-label="PECK dedicated assistant console">
+          <div class="chat-head">
+            <div class="chat-avatar" aria-hidden="true">
+              <img src="assets/logo/peck-mark-olive-accent.svg" alt="" width="22" height="18" />
+            </div>
+            <div>
+              <strong>PECK Assistant</strong>
+              <span>Online · AI Concierge</span>
+            </div>
+            <div class="chat-head-badge">Live Concierge</div>
+          </div>
+
+          <div class="chat-body" id="chat-body" aria-live="polite">
+            <div class="chat-message bot">
+              <p>Hey there! I am the official PECK Fitness Assistant. I can help you choose a training session, master slant board setup, understand foot placement, or answer product questions.</p>
+              <p>What would you like to explore today?</p>
+            </div>
+            <div class="chat-suggestions" id="chat-suggestions">
+              <button class="chat-suggestion" data-question="Which session should I start with?">Choose a session</button>
+              <button class="chat-suggestion" data-question="How do I adjust the board?">Adjust the board</button>
+              <button class="chat-suggestion" data-question="What is the Calf + Ankle Flow?">Calf + Ankle Flow</button>
+              <button class="chat-suggestion" data-question="How should my feet be positioned?">Foot positioning</button>
+              <button class="chat-suggestion" data-question="What are the key specs?">Product specs</button>
+              <button class="chat-suggestion" data-question="How do I store and clean the boards?">Care & storage</button>
+            </div>
+          </div>
+
+          <form class="chat-form" id="chat-form">
+            <input type="text" id="chat-input" placeholder="Ask about the board, routines, or setup..." aria-label="Ask the PECK assistant" />
+            <button type="submit">SEND</button>
+          </form>
+        </div>
+
+        <!-- Sidebar Quick Info -->
+        <aside class="assistant-sidebar">
+          <div class="sidebar-box">
+            <h3>Support & Safety Rules</h3>
+            <ul class="sidebar-list">
+              <li><strong>Unloaded adjustment:</strong> Always set the incline before stepping on. Never adjust while standing on the board.</li>
+              <li><strong>Listen to your body:</strong> Pain, numbness, or dizziness is a signal to stop, not push through.</li>
+              <li><strong>Controlled movements:</strong> Use only on a firm, level floor. No jumping, bouncing, or stacking boards.</li>
+              <li><strong>Support inquiries:</strong> Contact <a href="mailto:hello@peckfitness.ai">hello@peckfitness.ai</a> for order questions.</li>
+            </ul>
+          </div>
+
+          <div class="sidebar-box highlight">
+            <h3>Verified Board Features</h3>
+            <ul class="sidebar-list">
+              <li><strong>Incline range:</strong> 10° to 50° adjustable angle</li>
+              <li><strong>Construction:</strong> Premium aircraft aluminum</li>
+              <li><strong>Package:</strong> Set of two independent boards</li>
+              <li><strong>Surface:</strong> High-traction textured grip</li>
+              <li><strong>Floor protection:</strong> Non-marring rubber pads</li>
+              <li><strong>Storage:</strong> Folds flat with built-in handles</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" style="margin-top: 60px;">
+    <div class="wrap footer-top">
+      <a href="/" aria-label="Back to home"><img src="assets/logo/peck-logo-reversed.svg" alt="PECK Fitness" width="552" height="56" loading="lazy" /></a>
+      <p class="footer-taglines"><span>Built on Purpose. Driven by Performance.</span><span>Improve Mobility. Increase Performance.</span></p>
+    </div>
+    <div class="wrap footer-inner">
+      <span>© 2026 PECK FITNESS · <a href="mailto:hello@peckfitness.ai" style="color:inherit;">hello@peckfitness.ai</a></span>
+      <span>Premium · Professional · Bold · Purpose-built</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -13,3 +13,8 @@ desktop.ini
 node_modules/
 .vercel
 .netlify
+
+# Environment variables
+.env
+.env.*
+!.env.example
