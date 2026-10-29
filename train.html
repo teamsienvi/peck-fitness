@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PECK Train — Standalone Slant Board Training App | PECK Fitness</title>
+  <meta name="description" content="Dedicated standalone PECK Train companion app. Guided slant board workouts, interactive 10°–50° incline laboratory, rep counting, interval timers, and recovery breathing." />
+  <meta name="theme-color" content="#121411" />
+  <link rel="canonical" href="https://peckfitness.ai/train" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://peckfitness.ai/train" />
+  <meta property="og:site_name" content="PECK Fitness" />
+  <meta property="og:title" content="PECK Train — Slant Board Training Companion" />
+  <meta property="og:description" content="Guided lower-leg mobility, squat depth, and VMO strengthening sessions paired with the PECK Dual Slant Board." />
+  <meta property="og:image" content="https://peckfitness.ai/assets/peck-training-hero.jpg" />
+
+  <link rel="icon" href="favicon.ico?v=2" sizes="any" />
+  <link rel="icon" href="assets/favicon.svg?v=2" type="image/svg+xml" />
+  <link rel="icon" href="assets/icons/favicon-32.png?v=2" type="image/png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png?v=2" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/train.css" />
+</head>
+<body class="page-train">
+
+  <!-- Header -->
+  <header class="site-header" id="site-header">
+    <nav class="wrap main-nav" aria-label="Primary">
+      <a class="brand" href="/" aria-label="PECK Fitness home">
+        <img src="assets/logo/peck-logo-reversed.svg" alt="PECK Fitness" width="552" height="56" />
+      </a>
+      <div class="nav-links">
+        <a href="/#why">Why PECK</a>
+        <a href="/#specs">Specs</a>
+        <a href="/train" class="active">Training app</a>
+        <a href="/assistant">AI assistant</a>
+      </div>
+      <div class="nav-right">
+        <a class="button button-olive" href="/assistant" style="padding: 8px 14px; font-size: .74rem;">Ask Assistant ↗</a>
+        <a class="button button-ghost" href="/" style="padding: 8px 14px; font-size: .74rem;">← Back to Home</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Authentication Gate (Required for Access) -->
+  <div class="train-auth-gate" id="auth-gate" style="display:none;">
+    <div class="auth-gate-box">
+      <div class="auth-gate-badge">Members Access · Login Required</div>
+      <div class="auth-gate-logo">
+        <img src="assets/logo/peck-logo-reversed.svg" alt="PECK Fitness" width="320" height="32" />
+      </div>
+      <h2>PECK <span>Train</span></h2>
+      <p class="auth-gate-sub">
+        Sign in to access guided slant board workouts, custom 10°–50° incline simulations, rep tracking, and recovery breath protocols.
+      </p>
+
+      <!-- Step 1: Request Code -->
+      <form class="auth-gate-form" id="gate-email-form">
+        <div class="auth-input-group">
+          <label for="gate-email">Email Address</label>
+          <input type="email" id="gate-email" placeholder="name@email.com" required autocomplete="email" />
+        </div>
+        <button type="submit" class="train-btn-primary" id="gate-send-btn" style="width:100%; justify-content:center;">
+          Send Sign-In Code ↗
+        </button>
+        <p class="auth-status-msg" id="gate-email-status"></p>
+      </form>
+
+      <!-- Step 2: Verify Code -->
+      <form class="auth-gate-form" id="gate-otp-form" style="display:none;">
+        <div class="auth-otp-notice" id="gate-otp-notice">
+          We sent a 6-digit code to your email. Enter it below to unlock the app:
+        </div>
+        <div class="auth-input-group">
+          <label for="gate-code">6-Digit Verification Code</label>
+          <input type="text" id="gate-code" placeholder="123456" maxlength="6" inputmode="numeric" required />
+        </div>
+        <button type="submit" class="train-btn-primary" id="gate-verify-btn" style="width:100%; justify-content:center;">
+          Verify & Access App ↗
+        </button>
+        <p class="auth-status-msg" id="gate-otp-status"></p>
+        <div style="margin-top: 14px; display: flex; justify-content: space-between; font-size: 0.76rem;">
+          <button type="button" class="auth-text-btn" id="gate-resend-btn">Resend code</button>
+          <button type="button" class="auth-text-btn" id="gate-change-email-btn">Use different email</button>
+        </div>
+      </form>
+
+      <div class="auth-gate-footer">
+        <a href="/" class="auth-back-link">← Return to Landing Page</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Standalone App Wrapper -->
+  <main class="train-app-wrap" id="main" style="display:none;">
+    
+    <!-- App Status & Controls Bar -->
+    <div class="train-header-bar">
+      <div class="train-brand-group">
+        <img src="assets/logo/peck-mark-olive-accent.svg" alt="PECK Mark" width="28" height="24" />
+        <div>
+          <strong style="font-family:var(--font-display); font-size:1.3rem; letter-spacing:0.04em; text-transform:uppercase;">PECK Train</strong>
+          <span style="display:block; font-size:0.65rem; color:var(--train-text-dim); text-transform:uppercase; letter-spacing:0.06em;">Slant Board Companion · Member Access</span>
+        </div>
+        <div class="train-badge-pill" id="header-streak-badge">
+          🔥 3 DAY STREAK · 128 REPS
+        </div>
+      </div>
+
+      <div class="train-header-actions">
+        <div class="train-user-badge" id="train-user-badge">
+          <span class="user-avatar-icon">👤</span>
+          <span id="user-email-display">member@peckfitness.ai</span>
+        </div>
+        <button class="train-icon-btn active" id="audio-toggle-btn" aria-label="Toggle workout audio beeps">
+          🔊 Audio Cues: ON
+        </button>
+        <button class="train-icon-btn" id="logout-btn" title="Sign out of PECK Train">
+          Sign Out
+        </button>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <nav class="train-nav-tabs" role="tablist" aria-label="PECK Train Sections">
+      <button class="train-tab-btn active" role="tab" aria-selected="true" data-tab-target="view-workouts">
+        ⚡ Workouts & Flows
+      </button>
+      <button class="train-tab-btn" role="tab" aria-selected="false" data-tab-target="view-player">
+        ▶ Active Session Player
+      </button>
+      <button class="train-tab-btn" role="tab" aria-selected="false" data-tab-target="view-angle-lab">
+        📐 Incline Lab (10°–50°)
+      </button>
+      <button class="train-tab-btn" role="tab" aria-selected="false" data-tab-target="view-breath">
+        🫁 Recovery Breath Studio
+      </button>
+      <button class="train-tab-btn" role="tab" aria-selected="false" data-tab-target="view-progress">
+        📊 Progress & History
+      </button>
+    </nav>
+
+    <!-- ====================================================================
+         VIEW 1: WORKOUTS & FLOWS LIBRARY
+         ==================================================================== -->
+    <section class="train-view-pane active" id="view-workouts" role="tabpanel">
+      
+      <!-- Featured Daily Flow -->
+      <div class="train-hero-card">
+        <div class="train-hero-content">
+          <span class="workout-tag" style="background:var(--train-accent); color:#121411; font-weight:800;">Featured Daily Routine</span>
+          <h2>Calf + Ankle Flow</h2>
+          <p>5-minute targeted sequence. Restores ankle dorsiflexion, decompresses tight calves, and warms up the lower leg before lifting, running, or court sports.</p>
+          <div class="train-hero-meta">
+            <span>⏱ 5 Minutes</span>
+            <span>·</span>
+            <span>📐 10°–20° Incline</span>
+            <span>·</span>
+            <span>🦶 Toes Elevated</span>
+          </div>
+        </div>
+        <div>
+          <button class="train-btn-primary" id="hero-quick-start">
+            Start Flow ↗
+          </button>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="train-filters" role="group" aria-label="Filter routines">
+        <button class="train-filter-btn active" data-filter="all">All Routines (5)</button>
+        <button class="train-filter-btn" data-filter="mobility">Mobility & Stretches</button>
+        <button class="train-filter-btn" data-filter="strength">Squats & Strength</button>
+        <button class="train-filter-btn" data-filter="knee">Knee Health & VMO</button>
+        <button class="train-filter-btn" data-filter="recovery">Post-Lift Recovery</button>
+      </div>
+
+      <!-- Grid Container -->
+      <div class="train-grid" id="workouts-grid">
+        <!-- Dynamically rendered by js/train.js -->
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         VIEW 2: ACTIVE SESSION PLAYER (Interactive HUD)
+         ==================================================================== -->
+    <section class="train-view-pane" id="view-player" role="tabpanel">
+      <div class="player-container">
+        
+        <!-- Main Stage -->
+        <div class="player-main-card">
+          <div class="player-header">
+            <div class="player-session-title">
+              <small id="player-step-info">Exercise 1 of 4</small>
+              <h3 id="player-title">Calf + Ankle Flow</h3>
+            </div>
+            <div class="player-board-badge" id="player-board-badge">
+              📐 10° Incline · 🦶 Toes Elevated
+            </div>
+          </div>
+
+          <!-- Circular SVG Countdown Timer -->
+          <div class="player-timer-wrap">
+            <svg class="player-timer-svg" viewBox="0 0 240 240">
+              <circle class="timer-bg-circle" cx="120" cy="120" r="110"></circle>
+              <circle class="timer-progress-circle" id="player-progress-circle" cx="120" cy="120" r="110"></circle>
+            </svg>
+            <div class="player-timer-inner">
+              <div class="player-time-display" id="player-time-display">01:00</div>
+              <div class="player-time-label">Remaining</div>
+            </div>
+          </div>
+
+          <!-- Exercise Details -->
+          <h2 class="player-exercise-name" id="player-exercise-name">Bilateral Calf Raise</h2>
+          <div class="player-cue-box" id="player-cue">
+            Slow 3-second eccentric lower into full ankle stretch. Pause at the bottom for 1 second before driving up.
+          </div>
+
+          <!-- Rep Counter -->
+          <div class="player-reps-counter">
+            <span>Reps Logged:</span>
+            <button class="rep-btn" id="rep-minus" aria-label="Decrease reps">−</button>
+            <strong id="player-rep-count">0</strong>
+            <button class="rep-btn" id="rep-plus" aria-label="Increase reps">+</button>
+            <span style="font-size:0.65rem; color:var(--train-accent-hot); margin-left:4px;">(or hit Space)</span>
+          </div>
+
+          <!-- Controls -->
+          <div class="player-controls">
+            <button class="btn-ctrl" id="player-prev" aria-label="Previous Exercise">⏮ Prev</button>
+            <button class="btn-ctrl main-play" id="player-play-pause">Start Session</button>
+            <button class="btn-ctrl" id="player-next" aria-label="Next Exercise">⏭ Next / Skip</button>
+          </div>
+        </div>
+
+        <!-- Sidebar: Sequence Plan -->
+        <aside class="player-sidebar">
+          <div class="sequence-card">
+            <h4>Session Overview</h4>
+            <div class="sequence-list" id="player-sequence-list">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <div class="sequence-card">
+            <h4>Quick Form Rules</h4>
+            <ul style="font-size:0.78rem; color:var(--train-text-dim); padding-left:16px; margin:0; line-height:1.5;">
+              <li>Always adjust incline while unloaded. Never change angle while standing on the board.</li>
+              <li>Keep core braced and movements slow and deliberate. No jumping or bouncing.</li>
+              <li>Stop immediately if experiencing sharp pain, dizziness, or tingling.</li>
+            </ul>
+          </div>
+        </aside>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         VIEW 3: INCLINE LAB (Interactive Board Simulator)
+         ==================================================================== -->
+    <section class="train-view-pane" id="view-angle-lab" role="tabpanel">
+      <div class="angle-lab-container">
+        
+        <div class="angle-sim-card">
+          <h3>Dual Slant Board Incline Simulator</h3>
+          <p>Drag the angle slider or tap presets to preview mechanical inclination, muscle recruitment, and joint loading.</p>
+
+          <!-- SVG Visual Representation -->
+          <div class="board-canvas-box">
+            <div class="angle-display-tag" id="angle-value-tag">20° INCLINE</div>
+            <svg viewBox="0 0 500 240" width="100%" height="100%" aria-label="PECK slant board profile simulation">
+              <!-- Floor line -->
+              <line x1="20" y1="210" x2="480" y2="210" stroke="#333a2a" stroke-width="4" stroke-linecap="round"></line>
+              
+              <!-- Base frame -->
+              <rect x="50" y="206" width="380" height="8" rx="3" fill="#20241b" stroke="#5C6134" stroke-width="2"></rect>
+              <circle cx="60" cy="210" r="6" fill="#8A8551"></circle>
+              
+              <!-- Rotating Top Plate -->
+              <!-- Pivot point is cx=60, cy=210 -->
+              <g id="board-plate-visual" transform="rotate(-20, 60, 210)" style="transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);">
+                <!-- Textured Aluminum Board -->
+                <rect x="55" y="196" width="370" height="14" rx="4" fill="#5C6134" stroke="#8A8551" stroke-width="2"></rect>
+                <!-- Grip tread lines -->
+                <line x1="120" y1="197" x2="120" y2="209" stroke="#3d4023" stroke-width="3"></line>
+                <line x1="170" y1="197" x2="170" y2="209" stroke="#3d4023" stroke-width="3"></line>
+                <line x1="220" y1="197" x2="220" y2="209" stroke="#3d4023" stroke-width="3"></line>
+                <line x1="270" y1="197" x2="270" y2="209" stroke="#3d4023" stroke-width="3"></line>
+                <line x1="320" y1="197" x2="320" y2="209" stroke="#3d4023" stroke-width="3"></line>
+                <line x1="370" y1="197" x2="370" y2="209" stroke="#3d4023" stroke-width="3"></line>
+                <!-- Foot stopper ledge at base -->
+                <rect x="55" y="184" width="12" height="16" rx="2" fill="#8A8551"></rect>
+              </g>
+            </svg>
+          </div>
+
+          <!-- Slider -->
+          <div class="angle-slider-wrap">
+            <div class="angle-slider-labels">
+              <span>10° (Gentle)</span>
+              <span>20° (Standard)</span>
+              <span>30° (Deep)</span>
+              <span>40° (Intense)</span>
+              <span>50° (Peak)</span>
+            </div>
+            <input type="range" class="angle-slider" id="angle-slider" min="10" max="50" step="1" value="20" aria-label="Slant board incline degree" />
+          </div>
+
+          <!-- Quick Presets -->
+          <div class="angle-presets">
+            <button class="preset-btn" data-angle="10">10° Warm-up</button>
+            <button class="preset-btn active" data-angle="20">20° Squat/Mobility</button>
+            <button class="preset-btn" data-angle="30">30° VMO Strength</button>
+            <button class="preset-btn" data-angle="40">40° Deep Stretch</button>
+            <button class="preset-btn" data-angle="50">50° Peak Athlete</button>
+          </div>
+        </div>
+
+        <!-- Sidebar Information -->
+        <div class="angle-info-panel">
+          <div class="angle-details-box">
+            <h4 id="angle-info-title">20° — Standard Mobility & Squat Pitch</h4>
+            <p id="angle-info-desc" style="font-size:0.86rem; color:var(--train-text-dim); line-height:1.5;">
+              The optimal general fitness incline. Elevates heels sufficiently to keep torso upright during deep squats, even with restricted ankle mobility.
+            </p>
+            
+            <div style="font-size:0.75rem; font-weight:800; text-transform:uppercase; letter-spacing:0.06em; margin-top:16px;">
+              Primary Muscle Recruitment:
+            </div>
+            <div class="muscle-tags" id="angle-info-muscles">
+              <span class="muscle-pill">Quadriceps</span>
+              <span class="muscle-pill">VMO</span>
+              <span class="muscle-pill">Ankle Dorsiflexors</span>
+              <span class="muscle-pill">Achilles Tendon</span>
+            </div>
+
+            <div class="safety-note-box">
+              <strong>Coaching Note:</strong> Ensure both boards are set to the identical angle setting before beginning double-leg squats. Step onto the center of each textured surface.
+            </div>
+          </div>
+
+          <div class="angle-details-box">
+            <h4>Foot Placement Guide</h4>
+            <div style="font-size:0.82rem; color:var(--train-text-dim); display:flex; flex-direction:column; gap:8px;">
+              <div><strong>🦶 Heels Elevated:</strong> Targets quadriceps, isolates VMO, relieves ankle stiffness during squats.</div>
+              <div><strong>🦶 Toes Elevated:</strong> Stretches gastrocnemius, soleus, Achilles tendon, and plantar fascia.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         VIEW 4: RECOVERY BREATH STUDIO
+         ==================================================================== -->
+    <section class="train-view-pane" id="view-breath" role="tabpanel">
+      <div class="breath-studio-card">
+        
+        <div style="max-width:540px; margin-bottom:20px;">
+          <span class="workout-tag" style="background:var(--train-panel-light);">Nervous System Recovery</span>
+          <h2 style="font-family:var(--font-display); font-size:2.2rem; text-transform:uppercase; margin:8px 0;">Breathing Bubble Studio</h2>
+          <p style="color:var(--train-text-dim); font-size:0.9rem;">
+            Downregulate your sympathetic state after heavy lower-body loading. Follow the pulsing orb to synchronize breath tempo.
+          </p>
+        </div>
+
+        <!-- Protocol Selectors -->
+        <div class="breath-mode-selector" role="group" aria-label="Select breathing protocol">
+          <button class="protocol-btn active" data-protocol="box">Box Breathing (4-4-4-4)</button>
+          <button class="protocol-btn" data-protocol="cadence">Cadence Flow (4-4)</button>
+          <button class="protocol-btn" data-protocol="relax">4-7-8 Deep Recovery</button>
+        </div>
+
+        <!-- Interactive Animated Orb -->
+        <div class="orb-stage">
+          <div class="breath-core-orb" id="breath-core-orb">
+            <span class="orb-text-content" id="orb-text">START</span>
+          </div>
+        </div>
+
+        <div class="breath-instructions" id="breath-instruction">
+          Tap to begin paced breathing for post-workout recovery.
+        </div>
+
+        <div class="breath-meta-stats" style="margin-bottom:24px;">
+          <span id="breath-session-timer">00:00</span>
+          <span>·</span>
+          <span id="breath-cycles-count">0 CYCLES</span>
+        </div>
+
+        <button class="train-btn-primary" id="breath-toggle-btn" style="min-width:200px; justify-content:center;">
+          Start Breathing Flow
+        </button>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         VIEW 5: PROGRESS & STATS TRACKER
+         ==================================================================== -->
+    <section class="train-view-pane" id="view-progress" role="tabpanel">
+      
+      <!-- Metrics Row -->
+      <div class="stats-summary-grid">
+        <div class="stat-metric-card">
+          <span>Total Reps Logged</span>
+          <strong id="stat-reps">128</strong>
+        </div>
+        <div class="stat-metric-card">
+          <span>Minutes on Board</span>
+          <strong id="stat-minutes">42</strong>
+        </div>
+        <div class="stat-metric-card">
+          <span>Sessions Completed</span>
+          <strong id="stat-sessions">6</strong>
+        </div>
+        <div class="stat-metric-card">
+          <span>Current Streak</span>
+          <strong id="stat-streak">3 DAYS</strong>
+        </div>
+      </div>
+
+      <!-- Charts & History -->
+      <div class="progress-charts-row">
+        
+        <!-- Weekly Volume -->
+        <div class="chart-panel">
+          <h4>Weekly Activity & Consistency</h4>
+          <div class="train-week-bars">
+            <div class="train-bar-col"><div class="train-bar-fill" style="height:40%"></div><span class="train-bar-label">M</span></div>
+            <div class="train-bar-col"><div class="train-bar-fill" style="height:70%"></div><span class="train-bar-label">T</span></div>
+            <div class="train-bar-col"><div class="train-bar-fill" style="height:20%"></div><span class="train-bar-label">W</span></div>
+            <div class="train-bar-col"><div class="train-bar-fill" style="height:85%"></div><span class="train-bar-label">T</span></div>
+            <div class="train-bar-col"><div class="train-bar-fill" style="height:55%"></div><span class="train-bar-label">F</span></div>
+            <div class="train-bar-col"><div class="train-bar-fill" style="height:95%"></div><span class="train-bar-label">S</span></div>
+            <div class="train-bar-col"><div class="train-bar-fill" style="height:10%"></div><span class="train-bar-label">S</span></div>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-top:16px; font-size:0.75rem; color:var(--train-text-dim);">
+            <span>Consistency builds healthy tendons.</span>
+            <span style="color:var(--train-accent-hot);">Recommended: 4+ sessions/week</span>
+          </div>
+        </div>
+
+        <!-- Recent Log -->
+        <div class="chart-panel">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+            <h4 style="margin:0;">Recent Sessions</h4>
+            <button class="train-btn-secondary" id="reset-stats-btn" style="padding:4px 8px; font-size:0.65rem;">Reset</button>
+          </div>
+          <div class="history-list" id="history-list">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Celebration Modal -->
+  <div class="celebration-modal" id="celebration-modal" hidden>
+    <div class="celebration-box">
+      <div style="font-size:3rem;">🏆</div>
+      <h2>Session Completed!</h2>
+      <p style="color:var(--train-text-dim); font-size:0.9rem;" id="celeb-title">Calf + Ankle Flow</p>
+      
+      <div class="celebration-metrics">
+        <div class="celeb-metric">
+          <span>Duration</span>
+          <strong id="celeb-time">5 MIN</strong>
+        </div>
+        <div class="celeb-metric">
+          <span>Reps Recorded</span>
+          <strong id="celeb-reps">24 REPS</strong>
+        </div>
+      </div>
+
+      <button class="train-btn-primary" id="close-celeb-btn" style="width:100%; justify-content:center;">
+        View Updated Progress ↗
+      </button>
+    </div>
+  </div>
+
+  <!-- Global Footer -->
+  <footer class="site-footer">
+    <div class="wrap footer-top">
+      <a href="/" aria-label="Back to home">
+        <img src="assets/logo/peck-logo-reversed.svg" alt="PECK Fitness" width="552" height="56" loading="lazy" />
+      </a>
+      <p class="footer-taglines">
+        <span>Built on Purpose. Driven by Performance.</span>
+        <span>Improve Mobility. Increase Performance.</span>
+      </p>
+    </div>
+    <div class="wrap footer-inner">
+      <span>© 2026 PECK FITNESS · <a href="mailto:hello@peckfitness.ai" style="color:inherit;">hello@peckfitness.ai</a></span>
+      <span>PECK Train Standalone App · Dual Slant Board System</span>
+    </div>
+  </footer>
+
+  <script src="js/train.js"></script>
+</body>
+</html>

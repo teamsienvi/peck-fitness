@@ -80,6 +80,8 @@ const server = http.createServer((req, res) => {
   let filePath = path.join(__dirname, pathname === '/' ? 'index.html' : pathname);
   if (pathname === '/assistant' || pathname === '/assistant/') {
     filePath = path.join(__dirname, 'assistant.html');
+  } else if (pathname === '/train' || pathname === '/train/' || pathname === '/app' || pathname === '/app/') {
+    filePath = path.join(__dirname, 'train.html');
   } else if (!fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) {
     filePath = path.join(__dirname, 'index.html');
   }
@@ -104,6 +106,7 @@ function listen(port) {
   server.listen(port, () => {
     console.log(`\nPECK Fitness running:`);
     console.log(`  Landing page:       http://localhost:${port}/`);
+    console.log(`  PECK Train App:     http://localhost:${port}/train`);
     console.log(`  AI Assistant page:  http://localhost:${port}/assistant\n`);
   });
 }

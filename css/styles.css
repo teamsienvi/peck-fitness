@@ -400,6 +400,98 @@ h2 { margin: 12px 0 0; font-size: clamp(2.6rem, 5.6vw, 5.2rem); line-height: .97
 .breath-demo small { color: #cdd2c2; font-size: .72rem; font-weight: 600; }
 @keyframes breathe { 0%, 100% { transform: scale(.82); } 50% { transform: scale(1.1); } }
 
+/* App Section Upgrade Callouts */
+.app-copy-upgrade {
+  margin-top: 30px;
+  padding: 20px 22px;
+  background: #e7e9df;
+  border-left: 4px solid var(--olive);
+  border-top: 1px solid rgba(48,52,29,.12);
+  border-right: 1px solid rgba(48,52,29,.12);
+  border-bottom: 1px solid rgba(48,52,29,.12);
+}
+.app-upgrade-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.app-upgrade-badge {
+  background: var(--olive);
+  color: var(--white);
+  font-size: .62rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 2px;
+}
+.app-upgrade-header strong {
+  font-size: .95rem;
+  color: var(--ink);
+  letter-spacing: .02em;
+}
+.app-copy-upgrade p {
+  color: #52594d;
+  font-size: .84rem;
+  line-height: 1.45;
+  margin: 0 0 16px;
+}
+
+.app-ui-callout {
+  margin-top: 18px;
+  padding: 14px 16px;
+  background: #e7ebd9;
+  border: 1px solid #c9cebe;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+.app-ui-callout strong {
+  display: block;
+  font-size: .82rem;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+.app-ui-callout span {
+  display: block;
+  font-size: .7rem;
+  color: #5f6655;
+  line-height: 1.35;
+}
+.app-callout-btn {
+  background: var(--black);
+  color: var(--white);
+  padding: 8px 14px;
+  font-family: var(--font-display);
+  font-size: .85rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all .2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.app-callout-btn:hover {
+  background: var(--olive);
+  color: var(--white);
+  transform: translateY(-1px);
+}
+@media (max-width: 600px) {
+  .app-ui-callout {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .app-callout-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 /* ---------- Use cases ---------- */
 .dark-band { background: var(--black); }
 .use-cases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }

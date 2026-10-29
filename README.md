@@ -8,13 +8,16 @@ No build step, no dependencies — plain HTML, CSS, and JS.
 
 ```
 index.html          Main landing page
+train.html          Dedicated standalone PECK Train companion app (/train, /app)
 assistant.html      Dedicated standalone AI Assistant console (/assistant)
 404.html            Not-found page
 api/chat.js         Vercel serverless function for AI Assistant
 api/auth.js         Email verification & OTP validation endpoint
 api/ses.js          Email delivery integration using SigV4
 css/styles.css      Design system + all section styles + assistant & widget
+css/train.css       Standalone PECK Train app styling & animations
 js/main.js          Interactions, chat sync, OTP verification, drawer
+js/train.js         PECK Train engine: audio cues, angle lab, timers, breath pacer
 assets/             Images + favicon
 assets/logo/        Vector logos extracted from "PECK Fitness - Logo - RGB COLOURS.pdf"
 assets/brand/       Brand guide + product spec sheet (reference only)
