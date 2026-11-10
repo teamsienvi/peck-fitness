@@ -4,5 +4,11 @@
     { "source": "/assistant", "destination": "/assistant.html" },
     { "source": "/train", "destination": "/train.html" },
     { "source": "/app", "destination": "/train.html" }
+  ],
+  "crons": [
+    {
+      "path": "/api/cron/daily-seo",
+      "schedule": "0 4 * * *"
+    }
   ]
 }
